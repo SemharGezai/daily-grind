@@ -51,7 +51,19 @@
 	</header>
     <main>
 		 <header><h3 class="slogan">You drink our coffee, we make large bucks!</h3></header>
+		 <h5>The purpose of this webpage is to use JavaScript to determine the coffee of the day.<br> 
+			 This page presents a different image, custom message, and color based on each of the following days of the week:</h5>
 		 <div id="coffeeTarget"></div>
+
+		 <p>Click below to see our coffee specials of the week</p>
+		<p><a href="?day=0">Sunday</a></p>
+		<p><a href="?day=1">Monday</a></p>
+		<p><a href="?day=2">Tuesday</a></p>
+		<p><a href="?day=3">Wednesday</a></p>
+		<p><a href="?day=4">Thursday</a></p>
+		<p><a href="?day=5">Friday</a></p>
+		<p><a href="?day=6">Saturday</a></p>
+
 		 <!--
 		 	<p>
 				<img src="images/pumpkin-spice-latte.jpg" alt="Our Pumpkin Spice Latte tastes great on a Fall Day!" id="coffee" />
@@ -95,10 +107,25 @@
 		return myReturn;
 	}
 	
-	let myDate = new Date();
+		//use location object to access querystring (address bar)
+		const queryString = window.location.search;
+			
+		//output to console    
+		console.log(queryString);
+			
+		//separate querystring parameters
+		const urlParams = new URLSearchParams(queryString);
 
-	let today = myDate.getDay();
-	let coffee = ""; //will be an object
+
+		let myDate = new Date();
+
+		let today = myDate.getDay();
+		let coffee = ""; //will be an object
+
+		if(urlParams.has("day")){
+			today=urlParams.get("day");
+			today=parseInt(today);
+		}
 
 	//TEST ONLY DO NOT LEAVE THIS LINE IN THE FINAL VERSION
 	//today = 0;
